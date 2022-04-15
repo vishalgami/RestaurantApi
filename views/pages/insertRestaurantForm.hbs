@@ -1,0 +1,47 @@
+<div id="contact">
+    <div class="col-md-12">
+        <form id="contact-form" action="/api/insertRestaurant" method="POST">
+            <div class="title">
+                <h2>Add a new restaurant</h2>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Enter Restaurant Id" name="restaurantId" value="" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Restaurant Name" name="restaurantName" value="" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Building Number" name="buildingNumber" value="" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Street Name" name="streetName" value="" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Zipcode" name="zipcode" value="" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Enter coords (Enter seperated by comma)" name="coords" value="" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Enter borough" name="borough" value="" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Enter cuisine" name="cuisine" value="" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'"
+                    class="form-control input-lg" placeholder="Enter Grades Date" name="gradeDate" required/>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Enter grade" name="grade" value="" required>
+            </div>
+            <div class="col-md-12">
+                <input type="number" class="form-control" placeholder="Enter score" name="score" value="" required>
+            </div>            
+            <div class="col-md-8">
+                <input type="submit" class="form-control" name="Submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+

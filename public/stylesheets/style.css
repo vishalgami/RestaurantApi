@@ -1,0 +1,107 @@
+html {
+    
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #D9AFD9;
+    background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    text-align: center;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    max-width: 100% !important;
+} 
+
+.content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/* th {
+    background-image: linear-gradient(#f5b561, #eecda3);
+}
+
+
+.table {
+    background-image: linear-gradient(#ffdde1, #ee9ca7);
+    table-layout: fixed;
+    width: 85%;
+    margin-right: auto;
+    margin-left: auto;
+} */
+h1{
+    margin: 20px 0 20px 0;
+}
+
+#contact-form .col-md-12, .col-md-8 {
+    padding-left: 0;
+    padding-bottom: 20px;
+}
+
+.col-md-8 {
+    margin: auto;
+    width: 50%;
+}
+
+#contact-form .form-control {
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid #f0f0f0;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0px 0;
+}
+
+#contact-form .form-control:focus {
+    border-bottom-color: #202020;
+}
+
+#contact-form input[type=text] {
+    height: 30px;
+}
+
+#radioButtons, #dropdownMenu, #checkBoxes {
+    text-align: left;
+}
+
+#contact-form input[type='submit'] {
+    background: #202020;
+    border-radius: 50px;
+    border: 0;
+    color: #ffffff;
+}
+
+#contact-form input[type='submit']:hover {
+    background: #5aa5e2;
+    color: #000000;
+}
+
+input, textarea, button, .form-control {
+    transition: 0.5s;
+}
+
+.title {
+    padding-bottom: 10px;
+}
+
+#contact {
+    background: transparent;
+    text-align: center;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 20px 0 0 0;
+}
+.modal-body {
+    overflow-x: auto;
+  }

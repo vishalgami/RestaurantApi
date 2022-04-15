@@ -1,0 +1,87 @@
+<div id="contact">
+    <div class="col-md-12">
+        <form id="contact-form" action="/api/fetchres" method="GET">
+            <div class="title">
+                <h2>Fetch Restaurants</h2>
+            </div>
+            <div class="col-md-12">
+                <input type="number" class="form-control" placeholder="Enter Page Number" name="page" value="">
+            </div>
+            <div class="col-md-12">
+                <input type="number" class="form-control" placeholder="Book count for per page" name="perPage" value="">
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Enter Borough" name="borough" value="">
+            </div>
+            <div class="col-md-8">
+                <input type="submit" class="form-control" name="Submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+{{#if error}}
+<script type="text/javascript">
+    window.alert("{{errorMsg}}");
+</script>
+{{/if}}
+<div>
+    <!-- Button to Open the Modal -->
+    {{#if modalStatus}}
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            $('#resData').modal('show');
+        });
+    </script>
+    {{/if}}
+
+    <!-- The Modal -->
+    <div class="modal" id="resData">
+        <div class="modal-dialog" style="max-width: 90%;" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Restaurants for {{borough}}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Restaurant Id</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Borough</th>
+                                <th>Cuisine</th>
+                                <th>Grades</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each restaurant as |res|}}
+                            <tr>
+                                <td>{{keyExist res.restaurant_id}}</td>
+                                <td>{{keyExist res.name}}</td>
+                                <td>{{keyExist res.address.building}}, {{keyExist res.address.street}}, {{keyExist
+                                    res.address.zipcode}}</td>
+                                <td>{{keyExist res.borough}}</td>
+                                <td>{{keyExist res.cuisine}}</td>
+                                <td>
+                                    {{#each res.grades as |grades|}}
+                                    <strong>Date:</strong> {{formatDate (keyExist grades.date) format='DD-MMMM-YYYY'}}, <strong>Grade:</strong> {{keyExist
+                                    grades.grade}}, <strong>Score:</strong> {{keyExist grades.score}}<br>
+                                    {{/each}}
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

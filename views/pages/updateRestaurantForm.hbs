@@ -1,0 +1,38 @@
+<div id="contact">
+    <div class="col-md-12">
+        <form id="contact-form" action="/api/updateRestaurant" method="POST">
+            {{details}}
+            <div class="title">
+                <h2>Add a new restaurant</h2>
+            </div>
+            <div class="col-md-12">
+                <input type="hidden" class="form-control" name="id" value="{{restaurant._id}}" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Restaurant Name" name="restaurantName" value="{{restaurant.name}}" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Building Number" name="buildingNumber" value="{{restaurant.address.building}}" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Street Name" name="streetName" value="{{restaurant.address.street}}" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Zipcode" name="zipcode" value="{{restaurant.address.zipcode}}" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Enter borough" name="borough" value="{{restaurant.borough}}" required>
+            </div>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Enter cuisine" name="cuisine" value="{{restaurant.cuisine}}" required>
+            </div>  
+            <div class="col-md-12">
+                <input type="hidden" class="form-control" name="coord" value="{{restaurant.address.coord.[0]}},{{restaurant.address.coord.[1]}}" required>
+            </div>     
+            <div class="col-md-8">
+                <input type="submit" class="form-control" name="Submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+

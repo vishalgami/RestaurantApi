@@ -1,0 +1,33 @@
+<div class="container">
+    <h1 style="text-align:center">Restaurant Details</h1>
+    <table id="table" class="table table-striped table-hover">
+        <thead> 
+            <tr>
+                <th>Restaurant Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Borough</th>
+                <th>Cuisine</th>
+                <th>Grades</th>
+            </tr>
+            </thead>
+             <tbody id="data"></tbody>
+            {{#each restaurant as |res|}}
+            <tr>
+                <td>{{keyExist res.restaurant_id}}</td>
+                <td>{{keyExist res.name}}</td>
+                <td>{{keyExist res.address.building}}, {{keyExist res.address.street}}, {{keyExist
+                    res.address.zipcode}}</td>
+                <td>{{keyExist res.borough}}</td>
+                <td>{{keyExist res.cuisine}}</td>
+                <td>
+                    {{#each res.grades as |grades|}}
+                    <strong>Date:</strong> {{formatDate (keyExist grades.date)}}, <strong>Grade:</strong> {{keyExist
+                    grades.grade}}, <strong>Score:</strong> {{keyExist grades.score}}<br>
+                    {{/each}}
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
