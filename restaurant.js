@@ -1,3 +1,16 @@
+/******************************************************************************
+***
+* ITE5315 – Project
+* I declare that this assignment is my own work in accordance with Humber Academic Policy.
+* No part of this assignment has been copied manually or electronically from any other source
+* (including web sites) or distributed to other students.
+*
+* Group member Name: Balraj Singh - N01415998,Vishal Gami - N01452433 Date: 16-04-2022
+*
+*
+******************************************************************************
+**/
+
 var express = require('express');
 var app = express();
 require('dotenv').config();
@@ -16,7 +29,7 @@ app.use(bodyParser.urlencoded({ 'extended': 'true' }));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 var config = require('./config/restaurantDatabase');
-const { getName,authRole, createToken, checkLogin } = require('./middleware/authUser');
+const { getName, authRole, createToken, checkLogin } = require('./middleware/authUser');
 const { param, query, cookies, header, body, validationResult, check } = require('express-validator')
 
 const RestaurantLogic = require("./models/restaurantLogic.js");
@@ -58,11 +71,11 @@ if (statusCode == 2) {
 
 
 app.get('/api/homepage', authRole(['admin', 'user']), (req, res, next) => {
-    res.render('pages/homepage', { title: "Homepage",isLoggedIn:isLoggedIn,name:res.name });
+    res.render('pages/homepage', { title: "Homepage", isLoggedIn: isLoggedIn, name: res.name });
 });
 
 app.get('/api/fetchRestaurants', authRole(['admin', 'user']), (req, res, next) => {
-    res.render('pages/fetchRestaurantForm', { modalStatus: false, title: "Fetch Restaurants",isLoggedIn:isLoggedIn,name:res.name });
+    res.render('pages/fetchRestaurantForm', { modalStatus: false, title: "Fetch Restaurants", isLoggedIn: isLoggedIn, name: res.name });
 });
 
 
@@ -261,22 +274,22 @@ app.get('/api/fetchres', [
     const perPage = req.query.perPage;
     const borough = req.query.borough;
     if (!errors.isEmpty()) {
-        res.render('pages/fetchRestaurantForm', { modalStatus: false, error: true, errorMsg: "Some parameter are empty (Express-Validator)", title: "Fetch Details",isLoggedIn:isLoggedIn,name:res.name });
+        res.render('pages/fetchRestaurantForm', { modalStatus: false, error: true, errorMsg: "Some parameter are empty (Express-Validator)", title: "Fetch Details", isLoggedIn: isLoggedIn, name: res.name });
     } else {
         if (page == null || page <= 0 || perPage == null || perPage <= 0) {
-            res.render('pages/fetchRestaurantForm', { modalStatus: false, error: true, errorMsg: "Status code " + res.status(500).statusCode + ": Parameter are not valid", title: "Fetch Details",isLoggedIn:isLoggedIn,name:res.name });
+            res.render('pages/fetchRestaurantForm', { modalStatus: false, error: true, errorMsg: "Status code " + res.status(500).statusCode + ": Parameter are not valid", title: "Fetch Details", isLoggedIn: isLoggedIn, name: res.name });
         } else {
             db.getAllRestaurants(page, perPage, borough).then(function (result) {
                 if (result.length == 0) {
-                    res.render('pages/fetchRestaurantForm', { modalStatus: false, error: true, errorMsg: "Status code " + res.status(500).statusCode + ": No data found", title: "Fetch Details",isLoggedIn:isLoggedIn,name:res.name });
+                    res.render('pages/fetchRestaurantForm', { modalStatus: false, error: true, errorMsg: "Status code " + res.status(500).statusCode + ": No data found", title: "Fetch Details", isLoggedIn: isLoggedIn, name: res.name });
                 } else {
                     // console.log(result);
-                    res.render('pages/fetchRestaurantForm', { restaurant: result, error: false, modalStatus: true, borough: borough, title: "Detailed Restaurant",isLoggedIn:isLoggedIn,name:res.name });
+                    res.render('pages/fetchRestaurantForm', { restaurant: result, error: false, modalStatus: true, borough: borough, title: "Detailed Restaurant", isLoggedIn: isLoggedIn, name: res.name });
                 }
             })
                 .catch(
                     (errorMsg) => {
-                        res.render('pages/fetchRestaurantForm', { modalStatus: false, error: true, errorMsg: errorMsg, title: "Fetch Details",isLoggedIn:isLoggedIn,name:res.name });
+                        res.render('pages/fetchRestaurantForm', { modalStatus: false, error: true, errorMsg: errorMsg, title: "Fetch Details", isLoggedIn: isLoggedIn, name: res.name });
                     }
                 );
         }
@@ -286,12 +299,12 @@ app.get('/api/fetchres', [
 
 app.get('/api/displayRestaurants', authRole(['admin', 'user']), function (req, res) {
     db.getAll().then(function (result) {
-        res.render('pages/displayRestaurants', { restaurant: result, title: "Top 500 Restaurant",isLoggedIn:isLoggedIn,name:res.name });
+        res.render('pages/displayRestaurants', { restaurant: result, title: "Top 500 Restaurant", isLoggedIn: isLoggedIn, name: res.name });
     })
 });
 
 app.get('/api/insertRestaurant', authRole(['admin']), function (req, res) {
-    res.render('pages/insertRestaurantForm', { title: "Insert Restaurant",isLoggedIn:isLoggedIn,name:res.name });
+    res.render('pages/insertRestaurantForm', { title: "Insert Restaurant", isLoggedIn: isLoggedIn, name: res.name });
 });
 
 app.post('/api/insertRestaurant', authRole(['admin']), (req, res) => {
@@ -321,8 +334,9 @@ app.post('/api/insertRestaurant', authRole(['admin']), (req, res) => {
                 });
             }
         } else {
-            alert('Restaurant Added Successfully!');
-            res.redirect("/api/homepage");
+            res.render('partials/alert', { errorMsg: 'Restaurant Added Successfully!' });
+            // alert('Restaurant Added Successfully!');
+            // res.redirect("/api/homepage");
         }
     }).catch(
         (error) => {
@@ -335,7 +349,7 @@ app.post('/api/insertRestaurant', authRole(['admin']), (req, res) => {
 });
 
 app.get('/api/deleteRestaurant', authRole(['admin']), function (req, res) {
-    res.render('pages/deleteRestaurantForm', { title: "Delete Restaurant",isLoggedIn:isLoggedIn,name:res.name });
+    res.render('pages/deleteRestaurantForm', { title: "Delete Restaurant", isLoggedIn: isLoggedIn, name: res.name });
 });
 
 app.post('/api/deleteRestaurant', authRole(['admin']), function (req, res) {
@@ -343,11 +357,13 @@ app.post('/api/deleteRestaurant', authRole(['admin']), function (req, res) {
     if (mongoose.isValidObjectId(reqId)) {
         db.deleteRestaurantById(reqId).then(function (result) {
             if (result.deletedCount == 1) {
-                alert("Data deleted successfully for id: " + reqId);
-                res.redirect("/api/homepage");
+                res.render('partials/alert', { errorMsg: "Data deleted successfully for id: " + reqId });
+                //alert("Data deleted successfully for id: " + reqId);
+                //res.redirect("/api/homepage");
             } else {
-                alert("No data found to delete for " + reqId);
-                res.redirect("/api/homepage");
+                res.render('partials/alert', { errorMsg: "No data found to delete for " + reqId });
+                //alert("No data found to delete for " + reqId);
+                //res.redirect("/api/homepage");
             }
         }).catch(
             (error) => {
@@ -358,13 +374,14 @@ app.post('/api/deleteRestaurant', authRole(['admin']), function (req, res) {
         );
     }
     else {
-        alert("Invalid Id:  " + reqId);
-        res.redirect("/api/homepage");
+        res.render('partials/alert', { errorMsg: "Invalid Id:  " + reqId });
+        // alert("Invalid Id:  " + reqId);
+        // res.redirect("/api/homepage");
     }
 });
 
 app.get('/api/updateRestaurant', authRole(['admin']), function (req, res) {
-    res.render('pages/updateRestaurantIdForm', { title: "Update Restaurant",isLoggedIn:isLoggedIn,name:res.name });
+    res.render('pages/updateRestaurantIdForm', { title: "Update Restaurant", isLoggedIn: isLoggedIn, name: res.name });
 });
 
 app.post('/api/getDataToUpdateRestaurant', authRole(['admin']), function (req, res) {
@@ -374,7 +391,7 @@ app.post('/api/getDataToUpdateRestaurant', authRole(['admin']), function (req, r
             if (result == null) {
                 res.status(500).json("Status code " + res.statusCode + ": No data found ");
             } else {
-                res.render('pages/updateRestaurantForm', { restaurant: result, title: "Update Restaurant",isLoggedIn:isLoggedIn,name:res.name });
+                res.render('pages/updateRestaurantForm', { restaurant: result, title: "Update Restaurant", isLoggedIn: isLoggedIn, name: res.name });
             }
         }).catch(
             (error) => {
@@ -385,8 +402,9 @@ app.post('/api/getDataToUpdateRestaurant', authRole(['admin']), function (req, r
         );
     }
     else {
-        alert("Invalid Id:  " + id);
-        res.redirect("/api/homepage");
+        res.render('partials/alert', { errorMsg: "Invalid Id:  " + id });
+        // alert("Invalid Id:  " + id);
+        // res.redirect("/api/homepage");
     }
 });
 
@@ -406,11 +424,13 @@ app.post('/api/updateRestaurant', authRole(['admin']), (req, res) => {
     };
     db.updateRestaurantById(data, reqId).then(function (result) {
         if (result.matchedCount == 1) {
-            alert('Restaurant Updated Successfully for id : ' + reqId);
-            res.redirect("/api/homepage");
+            res.render('partials/alert', { errorMsg: 'Restaurant Updated Successfully for id : ' + reqId });
+            // alert('Restaurant Updated Successfully for id : ' + reqId);
+            // res.redirect("/api/homepage");
         } else {
-            alert('Error data updating!');
-            res.redirect("/api/homepage");
+            res.render('partials/alert', { errorMsg: 'Error data updating!' });
+            // alert('Error data updating!');
+            // res.redirect("/api/homepage");
         }
     }).catch(
         (error) => {
@@ -424,7 +444,7 @@ app.post('/api/updateRestaurant', authRole(['admin']), (req, res) => {
 // app.get('/api/generate', function (req, res) {
 //     bycrypt.genSalt(10, function (err, result) {
 //         console.log(result);
-//         bycrypt.hash("vishalgami",result, function (err, pass) { 
+//         bycrypt.hash("restaurantapiadmin",result, function (err, pass) { 
 //             console.log(pass); 
 //         });
 //     });
@@ -432,7 +452,7 @@ app.post('/api/updateRestaurant', authRole(['admin']), (req, res) => {
 
 app.get('/', checkLogin, function (req, res) {
     isLoggedIn = false;
-    res.render('pages/loginUser',{ isLoggedIn: isLoggedIn});
+    res.render('pages/loginUser', { isLoggedIn: isLoggedIn });
 });
 
 app.post('/api/checkUser', function (req, res) {
@@ -444,13 +464,13 @@ app.post('/api/checkUser', function (req, res) {
         } else {
             bycrypt.compare(password, result.password).then((data) => {
                 if (data == true) {
-                    const token = createToken(result.role,result.name);
+                    const token = createToken(result.role, result.name);
                     isLoggedIn = true;
                     name = result.name;
                     // const time = 2*24*60*60;
                     res.cookie('tokenCookie', token, { httpOnly: true });
                     res.redirect('/api/homepage');
-                }else{
+                } else {
                     res.render('partials/alert', { errorMsg: "Password is incorrect" });
                 }
             });
