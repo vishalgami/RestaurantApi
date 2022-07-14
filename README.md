@@ -1,4 +1,4 @@
-### Movie Flex
+# Movie Flex
 
 ## Description: 
 
@@ -8,12 +8,12 @@ Restaurant API is a node application using handlebars to display the restaurant 
 
 *Credential are just for demo purpose*
 
-# Normal User:
+### Normal User:
 
 username: vishalgami
 password: vishalgami
 
-# Admin:
+### Admin:
 
 username: admin
 password: admin
